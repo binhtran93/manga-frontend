@@ -1,0 +1,17 @@
+
+<table datatable="ng" dt-options="showCase.dtOptions" dt-column-defs="showCase.dtColumnDefs" class="row-border hover">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>FirstName</th>
+        <th>LastName</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="person in persons">
+        <td>{{ person.id }}</td>
+        <td>{{ person.firstName }}</td>
+        <td>{{ person.lastName }}</td>
+    </tr>
+    </tbody>
+</table>
