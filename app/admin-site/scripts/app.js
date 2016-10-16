@@ -1,5 +1,5 @@
 
-var AdminApp = angular.module("AdminApp", ['ui.router', 'datatables']);
+var AdminApp = angular.module("AdminApp", ['ui.router', 'datatables', 'ui.bootstrap', 'ui.select']);
 	AdminApp.config(configRouter);
 
 	configRouter.$inject = ['$stateProvider', '$urlRouterProvider'];

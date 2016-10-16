@@ -24,14 +24,13 @@ var src = {
         'resources/css/sb-admin.css',
         'node_modules/datatables.net-bs/css/dataTables.bootstrap.css',
         'node_modules/angular-datatables/dist/css/angular-datatables.min.css',
+        'node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css',
+        'node_modules/ui-select/dist/select.min.css',
         'resources/sass/**/*.scss'
     ],
     srcAdminJs: [
         'app/admin-site/scripts/app.js',
-        'resources/assets/**/*.js',
-        // manga components
-        // 'app/admin-site/scripts/components/manga/MangaController.js',
-        // 'app/admin-site/scripts/components/manga/MangaService.js',
+        'app/admin-site/scripts/config.js',
         'app/admin-site/scripts/**/*.js',
     ],
     srcLibJs: [
@@ -40,8 +39,13 @@ var src = {
         'node_modules/angular-ui-router/release/angular-ui-router.min.js',
         'node_modules/bootstrap/dist/js/bootstrap.min.js',
         'node_modules/datatables.net/js/jquery.dataTables.js',
+        'resources/js/extjs.js',
         'node_modules/datatables.net-bs/js/dataTables.bootstrap.js',
         'node_modules/angular-datatables/dist/angular-datatables.min.js',
+        'node_modules/angular-animate/angular-animate.js',
+        'node_modules/angular-touch/angular-touch.min.js',
+        'node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js',
+        'node_modules/ui-select/dist/select.min.js',
     ],
     srcFonts: [
         'node_modules/font-awesome/fonts/*',
@@ -109,5 +113,13 @@ gulp.task('watch', function () {
     gulp.watch(src.srcAdminSass, ['sass']);
     gulp.watch(src.srcAdminJs, ['js']);
 });
+
+// gulp.task('tdd', function (done) {
+//     var karmaServer = new karma.Server({
+//         configFile: __dirname + '/test/karma.conf.js'
+//     }, function () {
+//         done();
+//     }).start();
+// });
 
 gulp.task('default', ['watch', 'sass', 'fonts', 'js', 'libJs']);
