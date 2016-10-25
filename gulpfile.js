@@ -8,8 +8,10 @@ var gulp = require('gulp'),
     sourcemaps = require('gulp-sourcemaps'),
     webpack = require('gulp-webpack'),
     WebpackDevServer = require('webpack-dev-server'),
-    plumber = require('gulp-plumber');
-    
+    plumber = require('gulp-plumber'),
+    Server = require('karma').Server;
+
+
 
 var dest = {
     destAdminJs: 'app/admin-site/js',
@@ -55,7 +57,7 @@ var src = {
 
 
 //gulp.task('webpack', function () {
-//   return gulp.src('public/js/scripts.js') 
+//   return gulp.src('public/js/scripts.js')
 //       .pipe(webpack( require('./webpack.config.js') ))
 //       .pipe(gulp.dest('public/'))
 //});
@@ -114,12 +116,15 @@ gulp.task('watch', function () {
     gulp.watch(src.srcAdminJs, ['js']);
 });
 
-// gulp.task('tdd', function (done) {
-//     var karmaServer = new karma.Server({
-//         configFile: __dirname + '/test/karma.conf.js'
-//     }, function () {
-//         done();
-//     }).start();
-// });
+gulp.task('karma', function (done) {
+    new Server({
+        configFile: __dirname + '/karma.config.js',
+        files: src.srcLibJs.concat(src.srcAdminJs, [
+            'node_modules/angular-mocks/angular-mocks.js',
+            'tests/**/*.js',
+        ])
+    }, done).start();
+});
 
-gulp.task('default', ['watch', 'sass', 'fonts', 'js', 'libJs']);
+
+gulp.task('default', ['watch', 'sass', 'fonts', 'js', 'libJs', 'karma']);

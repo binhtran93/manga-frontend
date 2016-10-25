@@ -14,23 +14,23 @@ module.exports = function(config) {
 
 
     // list of files / patterns to load in the browser
-    files: [
-        '../../node_modules/jquery/dist/jquery.min.js',
-        '../../node_modules/angular/angular.min.js',
-        '../../node_modules/angular-ui-router/release/angular-ui-router.min.js',
-        '../../node_modules/angular-mocks/angular-mocks.js',
-        '../../node_modules/bootstrap/dist/js/bootstrap.min.js',
-        '../../node_modules/datatables.net/js/jquery.dataTables.js',
-        '../../resources/js/extjs.js',
-        '../../node_modules/datatables.net-bs/js/dataTables.bootstrap.js',
-        '../../node_modules/angular-datatables/dist/angular-datatables.min.js',
-        '../../node_modules/angular-animate/angular-animate.js',
-        '../../node_modules/angular-touch/angular-touch.min.js',
-        '../../node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js',
-        '../../node_modules/ui-select/dist/select.min.js',
-        'scripts/**/*.js',
-        'tests/**/*.js'
-    ],
+    // files: [
+    //     '../../node_modules/jquery/dist/jquery.min.js',
+    //     '../../node_modules/angular/angular.min.js',
+    //     '../../node_modules/angular-ui-router/release/angular-ui-router.min.js',
+    //     '../../node_modules/angular-mocks/angular-mocks.js',
+    //     '../../node_modules/bootstrap/dist/js/bootstrap.min.js',
+    //     '../../node_modules/datatables.net/js/jquery.dataTables.js',
+    //     '../../resources/js/extjs.js',
+    //     '../../node_modules/datatables.net-bs/js/dataTables.bootstrap.js',
+    //     '../../node_modules/angular-datatables/dist/angular-datatables.min.js',
+    //     '../../node_modules/angular-animate/angular-animate.js',
+    //     '../../node_modules/angular-touch/angular-touch.min.js',
+    //     '../../node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js',
+    //     '../../node_modules/ui-select/dist/select.min.js',
+    //     'scripts/**/*.js',
+    //     'tests/**/*.js'
+    // ],
 
 
     // list of files to exclude
