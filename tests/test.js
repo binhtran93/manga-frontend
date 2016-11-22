@@ -16,7 +16,7 @@ describe('Filter:propsFilter', function () {
             {name: 'tam', age:15},
             {name: 'huong', age: 12}
         ];
-        
+
         expect( propsFilter( items, {name: 'binh'} ).length ).toEqual(1);
 	});
 });

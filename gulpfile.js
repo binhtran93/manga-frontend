@@ -7,7 +7,6 @@ var gulp = require('gulp'),
     autoprefixer = require('gulp-autoprefixer')
     sourcemaps = require('gulp-sourcemaps'),
     webpack = require('gulp-webpack'),
-    WebpackDevServer = require('webpack-dev-server'),
     plumber = require('gulp-plumber'),
     Server = require('karma').Server;
 
@@ -28,6 +27,8 @@ var src = {
         'node_modules/angular-datatables/dist/css/angular-datatables.min.css',
         'node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css',
         'node_modules/ui-select/dist/select.min.css',
+        'node_modules/angular-ui-notification/dist/angular-ui-notification.min.css',
+        'node_modules/angular-block-ui/dist/angular-block-ui.css',
         'resources/sass/**/*.scss'
     ],
     srcAdminJs: [
@@ -48,6 +49,8 @@ var src = {
         'node_modules/angular-touch/angular-touch.min.js',
         'node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js',
         'node_modules/ui-select/dist/select.min.js',
+        'node_modules/angular-ui-notification/dist/angular-ui-notification.js',
+        'node_modules/angular-block-ui/dist/angular-block-ui.js'
     ],
     srcFonts: [
         'node_modules/font-awesome/fonts/*',
@@ -127,4 +130,4 @@ gulp.task('karma', function (done) {
 });
 
 
-gulp.task('default', ['watch', 'sass', 'fonts', 'js', 'libJs', 'karma']);
+gulp.task('default', ['watch', 'sass', 'fonts', 'js', 'libJs']);

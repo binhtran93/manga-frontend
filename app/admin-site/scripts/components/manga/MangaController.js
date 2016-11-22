@@ -4,14 +4,17 @@
 		.module('AdminApp')
 		.controller('MangaController', MangaController);
 
-		MangaController.$inject = ['$scope', '$uibModal', '$document', 'MangaService', 'MangaGrid'];
+		MangaController.$inject = ['$scope', '$uibModal', '$document', 'MangaService', 'MangaGrid', 'TagService', 'Notification', 'blockUI'];
 
-		function MangaController($scope, $uibModal, $document, MangaService, MangaGrid) {
+		function MangaController($scope, $uibModal, $document, MangaService, MangaGrid, TagService, Notification, blockUI) {
 			var createMangaModal;
 			var editMangaModal;
 			var currentMangaId;
 			
-			$scope.persons = [];
+			$scope.tags = [];
+			$scope.selectedTags = [];
+
+
 			$scope.openEditManga = openEditManga;
 			$scope.removeManga = removeManga;
 			$scope.updateManga = updateManga;
@@ -19,37 +22,39 @@
 			$scope.openCreateManga = openCreateManga;
 			$scope.closeCreateManga = closeCreateManga;
 			$scope.addManga = addManga;
-			
-			$scope.people = [
-				{ name: 'Adam',      email: 'adam@email.com',      age: 12, country: 'United States' },
-				{ name: 'Amalie',    email: 'amalie@email.com',    age: 12, country: 'Argentina' },
-				{ name: 'Estefanía', email: 'estefania@email.com', age: 21, country: 'Argentina' },
-				{ name: 'Adrian',    email: 'adrian@email.com',    age: 21, country: 'Ecuador' },
-				{ name: 'Wladimir',  email: 'wladimir@email.com',  age: 30, country: 'Ecuador' },
-				{ name: 'Samantha',  email: 'samantha@email.com',  age: 30, country: 'United States' },
-				{ name: 'Nicole',    email: 'nicole@email.com',    age: 43, country: 'Colombia' },
-				{ name: 'Natasha',   email: 'natasha@email.com',   age: 54, country: 'Ecuador' },
-				{ name: 'Michael',   email: 'michael@email.com',   age: 15, country: 'Colombia' },
-				{ name: 'Nicolás',   email: 'nicolas@email.com',    age: 43, country: 'Colombia' }
-			];
-			
-			
-			$scope.selectedAuthor = [$scope.people[5], $scope.people[4]];
 
 			init($scope);
 
+            /**
+             * Init gid manga
+             * @param $scope
+             */
 			function init($scope) {
 				MangaGrid.initGrid($scope);
 			}
-			
+
+            /**
+             * Create Modal setting
+             */
 			function openCreateManga() {
+				var block = blockUI.instances.get('createMangaBlock');
 				var parentEle = $document.find('.manga-grid');
-				
 				createMangaModal = $uibModal.open({
 					templateUrl: 'createMangaModal.html',
 					scope: $scope,
 					size: 'lg',
 					appendTo: parentEle
+				});
+
+				block.start();
+				TagService.getTags().then(function (res) {
+					if ( res.status == 0 ) {
+						createMangaModal.dismiss();
+						Notification.error('Internal error');
+						return;
+					}
+					$scope.tags = res.tags;
+					block.stop();
 				});
 			}
 			

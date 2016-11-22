@@ -3,26 +3,24 @@
         .module('AdminApp')
         .factory('Request', Request);
 
-        Request.$inject = ['$http', '$q', '$cookies', '$window'];
+        Request.$inject = ['$http', '$q', '$window'];
 
-        function Request ($http, $q, $cookies, $window) {
+        function Request ($http, $q, $window) {
 
             var service = {
                 get: get,
                 post: post,
                 send: send
-            }
+            };
 
             return service; 
 
-            var requestStore = [];
-
             function get(url, data) {
-                return this.send('GET', url, data)
+                return this.send('GET', url, data);
             }
 
             function post(url, data) {
-                return this.send('POST', url, data)
+                return this.send('POST', url, data);
             }
 
             function send(method, url, data) {
@@ -48,22 +46,15 @@
                 }
                 
                 $http(options).then(function (response) {
-                    var data = response.data;
-
-                    if (data.success == false && data.errorCode == 'ER0001') { // ER0001: session time out
-                        Authenticate.logout();
-                        return;
-                    }
-
                     return defered.resolve(response.data);
                 })
                 .catch(function (err) {
                     return defered.reject(err)
-                })
+                });
 
                 defered.promise.abort = function() {
                     defered.resolve();
-                }
+                };
 
                 return defered.promise;
             }

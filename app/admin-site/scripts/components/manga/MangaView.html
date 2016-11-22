@@ -26,7 +26,7 @@
         <div class="modal-header">
             <h4 class="modal-title" id="modal-title">Create new manga</h4>
         </div>
-        <div class="modal-body" id="modal-body">
+        <div class="modal-body" id="modal-body" block-ui="createMangaBlock">
             <form class="form-horizontal">
                 <div class="row">
                     <div class="col-xs-4">
@@ -61,10 +61,10 @@
                         <div class="form-group">
                             <label class="control-label col-xs-2" for="author">Authors</label>
                             <div class="col-xs-10">
-                                <ui-select multiple ng-model="selectedAuthor" theme="bootstrap">
-                                    <ui-select-match placeholder="Select person...">{{$item.name}}</ui-select-match>
-                                    <ui-select-choices repeat="person in people | propsFilter: {name: $select.search, age: $select.search}">
-                                        <div ng-bind="person.name"></div>
+                                <ui-select multiple ng-model="selectedTags" theme="bootstrap">
+                                    <ui-select-match placeholder="Select authors...">{{$item.tag_name}}</ui-select-match>
+                                    <ui-select-choices repeat="tag in tags | propsFilter: {tag_name: $select.search}">
+                                        <div ng-bind="tag.tag_name"></div>
                                     </ui-select-choices>
                                 </ui-select>
                             </div>
@@ -72,9 +72,12 @@
                         <div class="form-group">
                             <label class="control-label col-xs-2" for="tag">Tags</label>
                             <div class="col-xs-10">
-                                <select class="form-control" id="tag">
-
-                                </select>
+                                <ui-select multiple ng-model="selectedTags" theme="bootstrap">
+                                    <ui-select-match placeholder="Select tags...">{{$item.tag_name}}</ui-select-match>
+                                    <ui-select-choices repeat="tag in tags | propsFilter: {tag_name: $select.search}">
+                                        <div ng-bind="tag.tag_name"></div>
+                                    </ui-select-choices>
+                                </ui-select>
                             </div>
                         </div>
 
